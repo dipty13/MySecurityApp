@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "300113421008",
+    "firebase_url": "https://mysecurityapp.firebaseio.com",
+    "project_id": "mysecurityapp",
+    "storage_bucket": "mysecurityapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:300113421008:android:bf2311c3c7321c3b",
+        "android_client_info": {
+          "package_name": "com.dnerd.dipty.mysecurityapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "300113421008-euk5r3im1iv6ade4m90626c88f3jc2r0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dnerd.dipty.mysecurityapp",
+            "certificate_hash": "96cac5bfcc58f9ec56c7ca64613d5c246dbdb3bf"
+          }
+        },
+        {
+          "client_id": "300113421008-01vuel6ftlogvj8ktq0p9a47aorgr60f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsZAbCk8EHyGSbhcfnT8k0aGBSc8haOKU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "300113421008-01vuel6ftlogvj8ktq0p9a47aorgr60f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
