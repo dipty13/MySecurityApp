@@ -8,18 +8,23 @@
     tools:context="com.dnerd.dipty.mysecurityapp.EditSafeLocation"
     android:orientation="vertical">
 
-    <EditText
+    <!--<EditText
         android:id="@+id/mapEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="@string/whichPalce"/>
+        android:hint="@string/whichPalce"/>-->
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/locationSpinner"
+        ></Spinner>
 
-    <Button
+    <!--<Button
         android:id="@+id/goButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/go"/>
+        android:text="@string/go"/>-->
         <!--android:onClick="geoLocate"-->
 
     <fragment

@@ -38,14 +38,14 @@ public class MainActivity extends AppCompatActivity {
         mLinearLayout2.setAnimation(mDowntoUp);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user =mAuth.getCurrentUser();
-        if(user!=null&&user.isEmailVerified())
+       /* if(user!=null&&user.isEmailVerified())
         {
             Intent intent = new Intent(MainActivity.this,Profile.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
 
-        }
+        }*/
 
         mbtnlogin.setOnClickListener(new View.OnClickListener() {
             @Override

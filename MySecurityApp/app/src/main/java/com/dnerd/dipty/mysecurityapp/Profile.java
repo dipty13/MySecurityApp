@@ -52,7 +52,7 @@ public class Profile extends AppCompatActivity {
     private ProgressDialog mProgressDialog;
     private String mProfileImageUrl;
     private FirebaseAuth mAuth;
-    private DatabaseReference mGetUsersDataReference,mNavGetUsersDataRefrence,mMapDatabaseReference;;
+    private DatabaseReference mGetUsersDataReference,mNavGetUsersDataRefrence,mMapDatabaseReference;
     private StorageReference profileImageReference;
     private DrawerLayout drawer;
     private ActionBarDrawerToggle actionbarDrawer;
@@ -86,7 +86,7 @@ public class Profile extends AppCompatActivity {
         String onlineUserId = mAuth.getCurrentUser().getUid();
         mGetUsersDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(onlineUserId);
 
-        mMapDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Saved_location").child(onlineUserId);
+       /* mMapDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Saved_location").child(onlineUserId);
 
 
         mMapDatabaseReference.child("location_counter").setValue(String.valueOf(0));
@@ -103,7 +103,7 @@ public class Profile extends AppCompatActivity {
                     Log.d(TAG, "onComplete: Saved_location table created!");
                 }
             }
-        });
+        });*/
 
         profileImageReference = FirebaseStorage.getInstance().getReference();
         //offline capablities enabled

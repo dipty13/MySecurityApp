@@ -174,7 +174,7 @@ public class SignUp extends AppCompatActivity {
                     else{
                         FirebaseUser cU =  FirebaseAuth.getInstance().getCurrentUser();
 
-                        String current_user_id = cU.getUid();
+                        final String current_user_id = cU.getUid();
                         mStoreUserDefaultDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(current_user_id);
 
                         mStoreUserDefaultDataReference.child("user_name").setValue(name);
@@ -198,7 +198,7 @@ public class SignUp extends AppCompatActivity {
                                     dialog.show();
                                 }
                                 else{
-
+                                    MapTable mp = new MapTable();
                                     sendVerificationEmail();
                                     AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
                                     builder.setMessage(R.string.emailSent)
