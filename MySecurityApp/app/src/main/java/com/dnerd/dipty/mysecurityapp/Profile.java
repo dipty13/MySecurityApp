@@ -157,14 +157,14 @@ public class Profile extends AppCompatActivity {
                 if(id==R.id.phone)
                 {
                     Toast.makeText(Profile.this,"Phone",Toast.LENGTH_LONG).show();
-                   /* Intent phoneIntent = new Intent(Profile.this,EditPhoneNumber.class);
-                    startActivity(phoneIntent);*/
+                    Intent phoneIntent = new Intent(Profile.this,EditPhoneNumber.class);
+                    startActivity(phoneIntent);
                 }
                 else if(id==R.id.card)
                 {
                     Toast.makeText(Profile.this,"Card Number",Toast.LENGTH_LONG).show();
-                   /* Intent cardIntent = new Intent(Profile.this,CardNumber.class);
-                    startActivity(cardIntent);*/
+                    Intent cardIntent = new Intent(Profile.this,EditCardNumber.class);
+                    startActivity(cardIntent);
                 }
                 else if(id==R.id.safeLocation)
                 {
@@ -174,8 +174,8 @@ public class Profile extends AppCompatActivity {
                 }
                 else if(id==R.id.transactionRequest)
                 {
-                    /*Intent locationIntent = new Intent(Profile.this, SafeLocation.class);
-                    startActivity(locationIntent);*/
+                    Intent locationIntent = new Intent(Profile.this, TransactionRequest.class);
+                    startActivity(locationIntent);
                     Toast.makeText(Profile.this,"Transaction Request",Toast.LENGTH_LONG).show();
                 }
                 else if(id==R.id.report)

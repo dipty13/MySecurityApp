@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.dnerd.dipty.mysecurityapp.TransactionRequest">
+    <TextView
+        android:id="@+id/textViewTransaction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/transaction"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:textColor="@color/colorButton"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/editTextTotal"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editTextEmail"
+        android:layout_marginTop="80dp"
+        android:layout_alignStart="@+id/editTextEmail"
+        android:layout_centerHorizontal="true"
+        android:hint="@string/total" />
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="@string/email"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/editTextTotal"/>
+    <EditText
+        android:id="@+id/ediitTextCardNumber"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/cardNumber"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/editTextEmail"/>
+    <EditText
+        android:id="@+id/ediitTextCcv"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/ccv"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/ediitTextCardNumber"/>
+
+    <Button
+        android:id="@+id/buttonPay"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/pay"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/buttonstylee"
+        android:layout_below="@+id/ediitTextCcv"/>
+</RelativeLayout>

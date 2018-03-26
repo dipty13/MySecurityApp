@@ -199,6 +199,7 @@ public class SignUp extends AppCompatActivity {
                                 }
                                 else{
                                     MapTable mp = new MapTable();
+                                    TransactionTable tt = new TransactionTable();
                                     sendVerificationEmail();
                                     AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
                                     builder.setMessage(R.string.emailSent)

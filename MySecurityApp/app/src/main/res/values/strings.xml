@@ -78,4 +78,15 @@
     <string name="emailNotVerifiedTitle">Email Not Verified!</string>
     <string name="emailNotverfied">Email is not verified. Check your inbox!</string>
     <string name="mapNotReady">Map is not ready</string>
+    <string name="currentLocationInvalid">Invalid location</string>
+    <string name="enterCode">Enter Code</string>
+    <string name="verify_button">Verify</string>
+    <string name="vreifyPurchase">Verify Card</string>
+    <string name="verfyProgress">Verfing Code</string>
+    <string name="verfymessage">Please wait while we verify your card!</string>
+    <string name="success">Verfied</string>
+    <string name="sucessDetails">Valid code! Purchase is done!</string>
+    <string name="cardVerifed">Card is verified and Transaction is done!</string>
+    <string name="backButton">Go Back to Profile</string>
+    <string name="cardBlocked">Your card is Blocked!</string>
 </resources>

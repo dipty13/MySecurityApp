@@ -2,6 +2,7 @@ package com.dnerd.dipty.mysecurityapp;
 
 import android.location.Address;
 import android.location.Geocoder;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
 public class EditSafeLocation extends AppCompatActivity implements OnMapReadyCallback {
@@ -41,6 +43,7 @@ public class EditSafeLocation extends AppCompatActivity implements OnMapReadyCal
     private LatLng newLocation;
     private FirebaseAuth mAuth;
     private DatabaseReference mMapDataBaseReference;
+   // HashMap<Pair<String, String>,String> mSafeLocation;
     int markerCounter =0;
 
     private String[] locations = {"Uttara,Dhaka","Mirpur,Dhaka","Dhanmondi","Badda"
@@ -48,6 +51,7 @@ public class EditSafeLocation extends AppCompatActivity implements OnMapReadyCal
             ,"Shahabag","Azimpur","Khulna","Gazipur","Rangpur"};
 
     ArrayAdapter<String> adapter;
+    private  String onlineUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +65,7 @@ public class EditSafeLocation extends AppCompatActivity implements OnMapReadyCal
         mapFragment.getMapAsync(this); //loading the map
 
         mAuth = FirebaseAuth.getInstance();
-        String onlineUserId = mAuth.getCurrentUser().getUid();
+       onlineUserId = mAuth.getCurrentUser().getUid();
         mMapDataBaseReference = FirebaseDatabase.getInstance().getReference().child("Saved_location").child(onlineUserId);
 
         mMapDataBaseReference.addValueEventListener(new ValueEventListener() {
@@ -84,6 +88,8 @@ public class EditSafeLocation extends AppCompatActivity implements OnMapReadyCal
                         double lng = Double.parseDouble(locationLongitude);
                         LatLng loc = new LatLng(lat,lng);
                         markLocation(loc,locationName);
+                       /* mSafeLocation.put(Pair.create(locationLatitude,locationLatitude),onlineUserId);
+                        TransactionRequest.setLocation(mSafeLocation);*/
                     }
                 }
             }
@@ -126,6 +132,8 @@ public class EditSafeLocation extends AppCompatActivity implements OnMapReadyCal
 
     }
 
+    String locationLat;
+    String locationLng;
     private void goToLocation(int i) {
 
         switch (i)
@@ -133,144 +141,210 @@ public class EditSafeLocation extends AppCompatActivity implements OnMapReadyCal
             case 0:
                  lat = 23.8766296;
                  lng = 90.3432684;
+                 locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+               /* mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 1:
                 lat = 23.822349;
                 lng = 90.36542;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                  newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+               /* mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 2:
                 lat = 23.7470304;
                 lng = 90.3671072;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+                /*mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 3:
                 lat = 23.7862842;
                 lng = 90.4120026;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+                /*mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 4:
                 lat = 24.0196933;
                 lng = 90.2898395;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+                /*mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 5:
                 lat = 23.7811083;
                 lng = 90.3909025;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+          /*      mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 6:
                 lat = 23.8019082;
                 lng = 90.4126667;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+              /*  mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 7:
                 lat = 23.7946976;
                 lng = 90.3971412;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+                /*mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 8:
                 lat = 25.0283002;
                 lng = 89.9774258;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+                /*mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 9:
                 lat = 22.3271445;
                 lng = 91.7717906;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+                /*mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 10:
                 lat = 23.4530549;
                 lng = 91.1482908;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+                /*mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 11:
                 lat = 23.7403393;
                 lng = 90.3919137;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+               /* mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 12:
                 lat = 23.7282773;
                 lng = 90.3804558;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+               /* mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 13:
                 lat = 22.8452866;
                 lng = 89.4624609;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
+                markerCounter = markerCounter+1;
+                setValuesInMapTable(markerCounter,locations[i],lat,lng);
+               /* mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 14:
                 lat = 23.9946684;
                 lng = 90.400157;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+                /*mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             case 15:
                 lat = 25.7498343;
                 lng = 89.2270259;
+                locationLat = String.valueOf(lat);
+                locationLng = String.valueOf(lng);
                 newLocation = new LatLng(lat,lng);
                 markLocation(newLocation,locations[i]);
                 goToNewPlace(newLocation);
-                markerCounter++;
+                markerCounter = markerCounter+1;
                 setValuesInMapTable(markerCounter,locations[i],lat,lng);
+                /*mSafeLocation.put(Pair.create(locationLat,locationLng),onlineUserId);
+                TransactionRequest.setLocation(mSafeLocation);*/
                 break;
             default:
                 break;
@@ -278,7 +352,7 @@ public class EditSafeLocation extends AppCompatActivity implements OnMapReadyCal
     }
 
     private void setValuesInMapTable(int markerCounter, String location, double lat, double lng) {
-        mMapDataBaseReference.child("location_counter").setValue(String.valueOf(markerCounter));
+        mMapDataBaseReference.child("location_counter").setValue(markerCounter);
         mMapDataBaseReference.child(String.valueOf(markerCounter-1)).child("location_name").setValue(location);
         mMapDataBaseReference.child(String.valueOf(markerCounter-1)).child("location_latitude").setValue(lat);
         mMapDataBaseReference.child(String.valueOf(markerCounter-1)).child("location_longitude").setValue(lng);
