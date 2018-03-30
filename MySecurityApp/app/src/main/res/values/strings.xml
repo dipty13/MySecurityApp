@@ -89,4 +89,14 @@
     <string name="cardVerifed">Card is verified and Transaction is done!</string>
     <string name="backButton">Go Back to Profile</string>
     <string name="cardBlocked">Your card is Blocked!</string>
+    <string name="save_button">Save</string>
+    <string name="inCompleteTransaction">Incomplete Transaction</string>
+    <string name="completeTransaction">Complete Transaction</string>
+    <string name="cardBalance">Account Balance</string>
+    <string name="balanceText">Balance</string>
+    <string name="balance">Account Balance</string>
+    <string name="cardBalanceNotEnough">Your account balance is not enough!</string>
+    <string name="header">Transaction Report</string>
+    <string name="see_transaction_location">See Transaction Location</string>
+    <string name="headerUnsucseesful">Unsucessful Transaction</string>
 </resources>

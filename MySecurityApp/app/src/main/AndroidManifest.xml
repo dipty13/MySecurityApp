@@ -61,7 +61,13 @@
         <activity android:name=".TransactionRequest" />
         <activity android:name=".EditCardNumber" />
         <activity android:name=".EditPhoneNumber" />
-        <activity android:name=".CodeVerification"></activity>
+        <activity android:name=".CodeVerification" />
+        <activity android:name=".TransactionReport" />
+        <activity android:name=".CompleteTransactionReport" />
+        <activity android:name=".InCompleteTransaction" />
+        <activity android:name=".SuccessfulTransaction" />
+        <activity android:name=".UnsuccessfulTransaction" />
+        <activity android:name=".SeeLocation"></activity>
     </application>
 
 </manifest>

@@ -20,13 +20,14 @@ import com.google.firebase.database.ValueEventListener;
 
 public class EditCardNumber extends AppCompatActivity {
 
-    private EditText mCardNumber,mCcv;
-    private TextView mShowCardNumber,mCardStatus;
+    private EditText mCardNumber,mCcv,mBalance;
+    private TextView mShowCardNumber,mCardStatus,mShowBalance;
     private Button mSaveButton;
     private ImageView mEditCardNumber;
     private FirebaseAuth mAuth;
-    private DatabaseReference mGetUsersDataReference;
+    private DatabaseReference mGetUsersDataReference,mTransactionDataReference;
     private ProgressDialog mRegProgress;
+    int intAmount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,14 +40,32 @@ public class EditCardNumber extends AppCompatActivity {
         mEditCardNumber = findViewById(R.id.cardImageViewEdit);
         mSaveButton = findViewById(R.id.cardSaveButton);
         mCardStatus = findViewById(R.id.cardTextViewStatus);
+        mBalance = findViewById(R.id.cardEditTextBalance);
+        mShowBalance = findViewById(R.id.cardBalanceTextView);
 
         mAuth = FirebaseAuth.getInstance();
         String onlineUserId = mAuth.getCurrentUser().getUid();
         mGetUsersDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(onlineUserId);
+        mTransactionDataReference = FirebaseDatabase.getInstance().getReference().child("Transaction").child(onlineUserId);
 
         mCardNumber.setVisibility(View.INVISIBLE);
         mCcv.setVisibility(View.INVISIBLE);
+        mBalance.setVisibility(View.INVISIBLE);
         mSaveButton.setVisibility(View.INVISIBLE);
+        int balance1 =0;
+       /* mTransactionDataReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String amount = dataSnapshot.child("pay_amount").getValue().toString();
+                intAmount = Integer.parseInt(amount);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
          mGetUsersDataReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -54,15 +73,20 @@ public class EditCardNumber extends AppCompatActivity {
                 String email = dataSnapshot.child("user_email").getValue().toString();
                 String phone = dataSnapshot.child("user_phone").getValue().toString();
                 String image = dataSnapshot.child("user_image").getValue().toString();
-                String thumb_image = dataSnapshot.child("user_thumb_image").toString();
+                String balance = dataSnapshot.child("user_balance").getValue().toString();
+               /* String thumb_image = dataSnapshot.child("user_thumb_image").toString();*/
                 String card = dataSnapshot.child("user_card").getValue().toString();
                 String cardStatus = dataSnapshot.child("user_card_status").getValue().toString();
+
+                //int intBalance = Integer.parseInt(balance);
 
                 if (!card.equals("card_number")) {
                     mShowCardNumber.setText(card);
                     mCardStatus.setText(cardStatus);
                 }
-
+                if (!balance.equals("balance")) {
+                   mShowBalance.setText(balance);
+                }
 
             }
 
@@ -79,6 +103,7 @@ public class EditCardNumber extends AppCompatActivity {
             public void onClick(View view) {
                 mCardNumber.setVisibility(View.VISIBLE);
                 mCcv.setVisibility(View.VISIBLE);
+                mBalance.setVisibility(View.VISIBLE);
                 mSaveButton.setVisibility(View.VISIBLE);
             }
         });
@@ -92,6 +117,7 @@ public class EditCardNumber extends AppCompatActivity {
                 mRegProgress.show();*/
                 String cardNumber  = mCardNumber.getText().toString();
                 String ccv = mCcv.getText().toString();
+                String balance = mBalance.getText().toString();
 
                 if(cardNumber.length()==16&&ccv.length()==4) {
                     // mRegProgress.hide();
@@ -99,12 +125,14 @@ public class EditCardNumber extends AppCompatActivity {
                     Toast.makeText(EditCardNumber.this, R.string.cardNUmberSaved, Toast.LENGTH_SHORT).show();
                     mCardNumber.setVisibility(View.INVISIBLE);
                     mCcv.setVisibility(View.INVISIBLE);
+                    mBalance.setVisibility(View.INVISIBLE);
                     mSaveButton.setVisibility(View.INVISIBLE);
 
                     /*Intent in = new Intent(CardNumber.this,CardNumber.class);
                     startActivity(in);*/
                     mGetUsersDataReference.child("user_card").setValue(cardNumber);
                     mGetUsersDataReference.child("user_ccv").setValue(ccv);
+                    mGetUsersDataReference.child("user_balance").setValue(balance);
                 }
                 else{
                     // mRegProgress.dismiss();
@@ -116,6 +144,7 @@ public class EditCardNumber extends AppCompatActivity {
                     dialog.show();
                     mCardNumber.setHint(R.string.cardNumber);
                     mCcv.setHint(R.string.cardccv);
+                    mBalance.setHint("Account Balance");
                     mCardNumber.findFocus();
                     return;
                 }

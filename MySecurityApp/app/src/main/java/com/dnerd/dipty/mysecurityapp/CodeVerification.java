@@ -12,12 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class CodeVerification extends AppCompatActivity {
     String mCode="00";
-    int mCounter = 0;
+    int mCounter = 0,mAmount=0;
     private EditText mEnterCode;
     private Button mVerify;
     private ProgressDialog mProgress;
@@ -27,6 +30,10 @@ public class CodeVerification extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mTransactionDataReference,mUserDataReference;
     private int inputCodeCount =0;
+
+    String bl,amt;
+    int a=0,b=0;
+    String balance,amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,10 @@ public class CodeVerification extends AppCompatActivity {
         Intent intent = getIntent();
         mCode = intent.getStringExtra("code");
         mCounter = intent.getIntExtra("counter",1);
+        //mAmount = intent.getIntExtra("amount",1);
+
+
+
 
         /*Verification v = new Verification();
         mCode = v.getVerificationCode();
@@ -65,6 +76,7 @@ public class CodeVerification extends AppCompatActivity {
                    // mProgress.dismiss();
                     Toast.makeText(CodeVerification.this, "verified", Toast.LENGTH_SHORT).show();
                    mTransactionDataReference.child(String.valueOf(mCounter-1)).child("transaction_status").setValue("done");
+
                   /*  AlertDialog.Builder builder = new AlertDialog.Builder(CodeVerification.this);
                     builder.setMessage(R.string.success)
                             .setTitle(R.string.sucessDetails)
@@ -89,9 +101,74 @@ public class CodeVerification extends AppCompatActivity {
             }
         });
 
+      /* mUserDataReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                 bl = dataSnapshot.child("user_balance").getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+       *//* mTransactionDataReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                amt = dataSnapshot.child(String.valueOf(mCounter - 1)).child("pay_amount").getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*//*
+        int bll = Integer.parseInt(bl);
+                int amtt = mAmount;
+                int result = bll -amtt;
+                mUserDataReference.child("user_balance").setValue(result);*/
+     /*   if(!mVerified.equals("Your card is Blocked!"))
+        {
+            mUserDataReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    balance= dataSnapshot.child("user_balance").getValue().toString();
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+            mTransactionDataReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    amount = dataSnapshot.child(String.valueOf(mCounter-1)).child("pay_amount").getValue().toString();
+
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            b = Integer.parseInt(balance);
+            a = Integer.parseInt(amount);
+            int result = b-a;
+            //Toast.makeText(CodeVerification.this,result,Toast.LENGTH_LONG).show();
+            mUserDataReference.child("user_balance").setValue(String.valueOf(result));
+
+        }*/
+
         mBackToProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 Intent backToProfile = new Intent(CodeVerification.this,Profile.class);
                 startActivity(backToProfile);
             }

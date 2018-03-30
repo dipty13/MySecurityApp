@@ -183,9 +183,8 @@ public class SignUp extends AppCompatActivity {
                         mStoreUserDefaultDataReference.child("user_card").setValue("card_number");
                         mStoreUserDefaultDataReference.child("user_ccv").setValue("card_ccv");
                         mStoreUserDefaultDataReference.child("user_card_status").setValue("Active");
-                        mStoreUserDefaultDataReference.child("user_safe_location").setValue("location");
-                        mStoreUserDefaultDataReference.child("user_image").setValue("default_profile_image");
-                        mStoreUserDefaultDataReference.child("user_thumb_image").setValue("default_profile_image").addOnCompleteListener(new OnCompleteListener<Void>() {
+                        mStoreUserDefaultDataReference.child("user_balance").setValue("balance");
+                        mStoreUserDefaultDataReference.child("user_image").setValue("default_profile_image").addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if(!task.isSuccessful())

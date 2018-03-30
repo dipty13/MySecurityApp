@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -34,6 +35,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -42,6 +44,12 @@ import java.util.Locale;
 import java.util.Random;
 
 import static android.widget.Toast.LENGTH_LONG;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 
 public class TransactionRequest extends AppCompatActivity {
     private static final String TAG = "TransactionRequest";
@@ -66,8 +74,12 @@ public class TransactionRequest extends AppCompatActivity {
     private static final String COARSE_LOCATION =android. Manifest.permission.ACCESS_COARSE_LOCATION;
     private static  final int LOCATION_PERMISSION_REQUEST_CODE =1234;
     private final int SEND_SMS_PERMISSION_REQUEST_CODE =1000;
+    private final String SMS_API_KEY = "IB8MN1kLDv8-fQOg8BWyf1viCoAVgziP5dDvAtEjye";
     private String phoneNumber;
+    private int a,b;
 
+    int dBalance;
+    int dAmount;
     //Verification v = new Verification();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +114,22 @@ public class TransactionRequest extends AppCompatActivity {
 
             }
         });
+        mUserDataReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String blnc = dataSnapshot.child("user_balance").getValue().toString();
 
+                a = Integer.parseInt(blnc);
+                //return;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+       // String amount;
         mPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,10 +138,25 @@ public class TransactionRequest extends AppCompatActivity {
                 String cardNumber = mCardNumber.getText().toString();
                 String ccv = mCccv.getText().toString();
                 checkDtataWithUsersTable(amount,email,cardNumber,ccv);
+
+              /*  dAmount = Integer.parseInt(amount);
+                      //  dBalance = Integer.parseInt(balance);
+                String x = String.valueOf(a-dAmount);
+                mUserDataReference.child("user_balance").setValue(x);*/
+                //return;
+
+        //Toast.makeText(TransactionRequest.this, dAmount+" "+dBalance, Toast.LENGTH_LONG).show();
             }
         });
 
 
+
+      /*  String x = String.valueOf(a-dAmount);
+        mUserDataReference.child("user_balance").setValue(x);
+        return;*/
+            //setUserData();
+       /* StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);*/
     }
 
     private void checkDtataWithUsersTable(final String amount, final String email, final String cardNumber, final String ccv) {
@@ -126,20 +168,53 @@ public class TransactionRequest extends AppCompatActivity {
                 String userCcv = dataSnapshot.child("user_ccv").getValue().toString();
                 String userCardStatus = dataSnapshot.child("user_card_status").getValue().toString();
                 phoneNumber = dataSnapshot.child("user_phone").getValue().toString();
+                 String balance = dataSnapshot.child("user_balance").getValue().toString();
+
+                 dBalance = Integer.parseInt(balance);
+                 dAmount = Integer.parseInt(amount);
+                 //setBalance(dBalance,dAmount);
 
                 if(userEmail.equals(email)&&userCard.equals(cardNumber)&&userCcv.equals(ccv)){
                     if(userCardStatus.equals("Blocked")){
+                        counter++;
+                        mTransactionDataReference.child("transaction_counter").setValue(counter);
+                        mTransactionDataReference.child(String.valueOf(counter - 1)).child("date").setValue(getCurrentDate(mPay));
+                        mTransactionDataReference.child(String.valueOf(counter - 1)).child("time").setValue(getCurrentTime(mPay));
+                        mTransactionDataReference.child(String.valueOf(counter - 1)).child("pay_amount").setValue(amount);
+                        mTransactionDataReference.child(String.valueOf(counter-1)).child("latitude").setValue("latitude");
+                        mTransactionDataReference.child(String.valueOf(counter-1)).child("longitude").setValue("longitude");
+                        mTransactionDataReference.child(String.valueOf(counter-1)).child("transaction_status").setValue("not done");
                         Toast.makeText(TransactionRequest.this,R.string.cardBlocked,LENGTH_LONG).show();
-                    }else {
+                        return;
+                    }else if(dBalance < dAmount){
+                        counter++;
+                        mTransactionDataReference.child("transaction_counter").setValue(counter);
+                        mTransactionDataReference.child(String.valueOf(counter - 1)).child("date").setValue(getCurrentDate(mPay));
+                        mTransactionDataReference.child(String.valueOf(counter - 1)).child("time").setValue(getCurrentTime(mPay));
+                        mTransactionDataReference.child(String.valueOf(counter - 1)).child("pay_amount").setValue(amount);
+                        mTransactionDataReference.child(String.valueOf(counter-1)).child("latitude").setValue("latitude");
+                        mTransactionDataReference.child(String.valueOf(counter-1)).child("longitude").setValue("longitude");
+                        mTransactionDataReference.child(String.valueOf(counter-1)).child("transaction_status").setValue("not done");
+                        Toast.makeText(TransactionRequest.this,balance,LENGTH_LONG).show();
+                        Toast.makeText(TransactionRequest.this,R.string.cardBalanceNotEnough,LENGTH_LONG).show();
+                        return;
+                    }
+                    else{
                         counter++;
                         mTransactionDataReference.child("transaction_counter").setValue(counter);
                         mTransactionDataReference.child(String.valueOf(counter - 1)).child("date").setValue(getCurrentDate(mPay));
                         mTransactionDataReference.child(String.valueOf(counter - 1)).child("time").setValue(getCurrentTime(mPay));
                         mTransactionDataReference.child(String.valueOf(counter - 1)).child("pay_amount").setValue(amount);
 
+                        mTransactionDataReference.child(String.valueOf(counter-1)).child("latitude").setValue("latitude");
+                        mTransactionDataReference.child(String.valueOf(counter-1)).child("longitude").setValue("longitude");
+                        mTransactionDataReference.child(String.valueOf(counter-1)).child("transaction_status").setValue("not done");
+                       /* mUserDataReference.child("user_balance").setValue(dBalance-dAmount);*/
                         getLocationPermission();
                         getDeviceLocation();
 
+                       /* mUserDataReference.child("user_balance").setValue(dBalance-dAmount);
+                        return;*/
                     /*double lat1 = getLat();
                     double lng1 = getLng();*/
                         //Toast.makeText(TransactionRequest.this, lat+" "+lng, Toast.LENGTH_LONG).show();
@@ -156,9 +231,19 @@ public class TransactionRequest extends AppCompatActivity {
 
             }
         });
+
+/*        dBalance = Integer.parseInt(balance);
+        dAmount = Integer.parseInt(amount);
+        String x = String.valueOf(dBalance-dAmount);
+        mUserDataReference.child("user_balance").setValue(x);
+        Toast.makeText(TransactionRequest.this, dAmount+" "+dBalance, Toast.LENGTH_LONG).show();*/
+
+        /*mUserDataReference.child("user_balance").setValue(dBalance-dAmount);*/
     }
 
-    private void checkMapTable(final String loc, double lat, double lng) {
+
+
+    private void checkMapTable(final String loc,final double lat, double lng) {
         final String lat1 = String.valueOf(lat);
         final String lng1 = String.valueOf(lng);
 
@@ -179,7 +264,10 @@ public class TransactionRequest extends AppCompatActivity {
                     if(locationLatitude.equals(lat1)&&locationLongitude.equals(lng1))
                     {
                         c=1;
+                        mTransactionDataReference.child(String.valueOf(counter-1)).child("latitude").setValue(lat1);
+                        mTransactionDataReference.child(String.valueOf(counter-1)).child("longitude").setValue(lng1);
                         mTransactionDataReference.child(String.valueOf(counter-1)).child("transaction_status").setValue("done");
+                      //  mUserDataReference.child("user_balance").setValue(dBalance-dAmount);
                         mAmonut.setText("");
                         mEmail.setText("");
                         mCardNumber.setText("");
@@ -189,8 +277,10 @@ public class TransactionRequest extends AppCompatActivity {
                     }
                 }
                 if(c==0){
-                    mTransactionDataReference.child(String.valueOf(counter-1)).child("location").setValue(lat1+" "+lng1);
+                    mTransactionDataReference.child(String.valueOf(counter-1)).child("latitude").setValue(lat1);
+                    mTransactionDataReference.child(String.valueOf(counter-1)).child("longitude").setValue(lng1);
                     mTransactionDataReference.child(String.valueOf(counter-1)).child("transaction_status").setValue("not done");
+                  /*  mUserDataReference.child("user_balance").setValue(dBalance-dAmount);*/
                     mAmonut.setText("");
                     mEmail.setText("");
                     mCardNumber.setText("");
@@ -199,15 +289,16 @@ public class TransactionRequest extends AppCompatActivity {
                     String code = getRandomNumber();
                     sendCode(code);
 
+
                    /* v.setVerficationCounter(counter);
                     v.setVerificationCode(code);*/
                     Intent cv = new Intent(TransactionRequest.this,CodeVerification.class);
                     cv.putExtra("code",code);
                     cv.putExtra("counter",counter);
-                /*    cv.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    /*cv.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     cv.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);*/
                     startActivity(cv);
-
+                    return;
 
                 }
             }
@@ -237,7 +328,43 @@ public class TransactionRequest extends AppCompatActivity {
                     android.Manifest.permission.SEND_SMS},SEND_SMS_PERMISSION_REQUEST_CODE);
         }
 
+        /*try {
+            // Construct data
+            String apiKey =  "apikey="+ SMS_API_KEY;
+            String message = "&message=" + code;
+            String sender = "&sender=" + "InSecurity";
+            String numbers = "&numbers=" + phoneNumber;
+
+            // Send data
+            HttpURLConnection conn = (HttpURLConnection) new URL("https://api.txtlocal.com/send/?").openConnection();
+            String data = apiKey + numbers + message + sender;
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Length", Integer.toString(data.length()));
+            conn.getOutputStream().write(data.getBytes("UTF-8"));
+            final BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            final StringBuffer stringBuffer = new StringBuffer();
+            String line;
+            while ((line = rd.readLine()) != null) {
+                //stringBuffer.append(line);
+
+                Toast.makeText(TransactionRequest.this,"Message sent!"+line, LENGTH_LONG).show();
+
+            }
+            rd.close();
+
+            //return stringBuffer.toString();
+        } catch (Exception e) {
+            Toast.makeText(TransactionRequest.this,"error "+e,LENGTH_LONG).show();
+            //System.out.println("Error SMS "+e);
+           // return "Error "+e;
+        }*/
+
+
+
     }
+
+
 
     HashMap<Pair<String, String>,String> getResult()
     {
@@ -312,7 +439,7 @@ public class TransactionRequest extends AppCompatActivity {
                            lng = currentLocation.getLongitude();
 
                             checkMapTable(loc,lat,lng);
-                            //Toast.makeText(TransactionRequest.this, lat+" device location "+lng, Toast.LENGTH_LONG).show();
+                            //Toast.makeText(TransactionRequest.this, dAmount+" "+lat+" device location "+lng, Toast.LENGTH_LONG).show();
                             /*setLat(lat);
                             setLng(lng);*/
                            // moveCamera(new LatLng(currentLocation.getAltitude(),currentLocation.getLongitude()),DEFAULT_ZOOM,"I'm here!");

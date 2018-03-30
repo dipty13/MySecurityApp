@@ -116,7 +116,7 @@ public class Profile extends AppCompatActivity {
                 String email = dataSnapshot.child("user_email").getValue().toString();
                 String phone = dataSnapshot.child("user_phone").getValue().toString();
                 String image = dataSnapshot.child("user_image").getValue().toString();
-                String thumb_image = dataSnapshot.child("user_thumb_image").toString();
+               /* String thumb_image = dataSnapshot.child("user_thumb_image").toString();*/
 
                 mName.setText(name);
                 mEmail.setText(email);
@@ -180,8 +180,8 @@ public class Profile extends AppCompatActivity {
                 }
                 else if(id==R.id.report)
                 {
-                    /*Intent locationIntent = new Intent(Profile.this, SafeLocation.class);
-                    startActivity(locationIntent);*/
+                    Intent locationIntent = new Intent(Profile.this, TransactionReport.class);
+                    startActivity(locationIntent);
                     Toast.makeText(Profile.this,"Report",Toast.LENGTH_LONG).show();
                 }
                 else if(id==R.id.logout)

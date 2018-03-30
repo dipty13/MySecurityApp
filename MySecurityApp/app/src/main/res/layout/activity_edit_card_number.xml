@@ -23,6 +23,15 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:textSize="20sp"/>
+    <TextView
+        android:id="@+id/cardBalanceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cardTextView"
+        android:text="@string/balanceText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"/>
 
     <ImageView
         android:id="@+id/cardImageViewEdit"
@@ -55,6 +64,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:hint="@string/cardccv" />
+    <EditText
+        android:id="@+id/cardEditTextBalance"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/cardImageViewEdit"
+        android:layout_alignRight="@+id/cardImageViewEdit"
+        android:layout_below="@+id/cardEditTextCcv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:hint="@string/cardBalance" />
 
     <Button
         android:id="@+id/cardSaveButton"
@@ -62,11 +81,11 @@
         android:layout_height="55dp"
         android:layout_alignLeft="@+id/cardEditTextCcv"
         android:layout_alignStart="@+id/cardEditTextCcv"
-        android:layout_below="@+id/cardEditTextCcv"
+        android:layout_below="@+id/cardEditTextBalance"
         android:layout_marginTop="19dp"
         android:background="@drawable/buttonstylee"
         android:layout_centerHorizontal="true"
-        android:text="@string/login_button"
+        android:text="@string/save_button"
         android:textSize="20dp" />
 
 </RelativeLayout>
