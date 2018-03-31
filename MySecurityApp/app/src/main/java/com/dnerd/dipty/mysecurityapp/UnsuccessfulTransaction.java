@@ -23,7 +23,7 @@ public class UnsuccessfulTransaction extends AppCompatActivity {
     private TextView mBalance;
     private Button mSeeLocation;
 
-    private String lat,lng;
+    private double lat,lng;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mGetUsersDataReference,mTransactionDataReference;
@@ -50,6 +50,8 @@ public class UnsuccessfulTransaction extends AppCompatActivity {
         date = intent.getStringExtra("date");
 
 
+        mTime.setText(time);
+        mDate.setText(date);
         mGetUsersDataReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -64,6 +66,7 @@ public class UnsuccessfulTransaction extends AppCompatActivity {
             }
         });
 
+        final Intent seeMap = new Intent(UnsuccessfulTransaction.this,SeeLocation.class);
         mTransactionDataReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -79,11 +82,14 @@ public class UnsuccessfulTransaction extends AppCompatActivity {
                     String sLongitude = dataSnapshot.child(String.valueOf(i)).child("longitude").getValue().toString();
 
 
-                    if(sDate.equals(time)&&sTime.equals(time))
+                    if(sDate.equals(date)&&sTime.equals(time))
                     {
                         mAmount.setText(sAmount);
-                        lat = sLatitude;
-                        lng  = sLongitude;
+                        lat = Double.parseDouble(sLatitude);
+                        lng  = Double.parseDouble(sLongitude);
+                        seeMap.putExtra("lat",lat);
+                        seeMap.putExtra("lng",lng);
+                        Toast.makeText(UnsuccessfulTransaction.this,lat+ "button clicked" +lng,Toast.LENGTH_LONG).show();
                         break;
                     }
                 }
@@ -98,10 +104,9 @@ public class UnsuccessfulTransaction extends AppCompatActivity {
         mSeeLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(UnsuccessfulTransaction.this,"button clicked",Toast.LENGTH_LONG).show();
-                Intent seeMap = new Intent(UnsuccessfulTransaction.this,SeeLocation.class);
-                seeMap.putExtra("lat",lat);
-                seeMap.putExtra("lng",lng);
+
+
+                Toast.makeText(UnsuccessfulTransaction.this,lat+ "button clicked" +lng,Toast.LENGTH_LONG).show();
                 startActivity(seeMap);
             }
         });

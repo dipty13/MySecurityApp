@@ -13,6 +13,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class SeeLocation extends AppCompatActivity implements OnMapReadyCallback {
     GoogleMap mGoogleMap;
@@ -24,15 +25,18 @@ public class SeeLocation extends AppCompatActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_location);
 
+        Intent mapIntent = getIntent();
+        lat = mapIntent.getDoubleExtra("lat",1);
+        lng = mapIntent.getDoubleExtra("lng",1);
+
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.seeMap);
         mapFragment.getMapAsync(this); //loading the map
 
-        Intent mapIntent = getIntent();
-        String sLat = mapIntent.getStringExtra("lat");
-        String sLng = mapIntent.getStringExtra("lng");
 
-        lat = Double.parseDouble(sLat);
-        lng = Double.parseDouble(sLng);
+        /*String sLat = mapIntent.getStringExtra("lat");
+        String sLng = mapIntent.getStringExtra("lng");*/
+
+
     }
 
     @Override
@@ -40,9 +44,21 @@ public class SeeLocation extends AppCompatActivity implements OnMapReadyCallback
         mapReady = true;
 
         mGoogleMap = googleMap;
+        Toast.makeText(SeeLocation.this,lat+ " "+lng,Toast.LENGTH_LONG).show();
         LatLng uttara = new LatLng(lat,lng);
-        CameraPosition target = CameraPosition.builder().target(uttara).zoom(14).build();
-        mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(target));
+        markLocation(uttara,"Transaction Location");
+        goToNewPlace(uttara);
+        //CameraPosition target = CameraPosition.builder().target(uttara).zoom(4).build();
+        //mGoogleMap.moveCamera(CameraUpdateFactory.newCameraPosition(target));
+    }
+
+    private void markLocation(LatLng newLocation, String location) {
+        MarkerOptions options = new MarkerOptions().position(newLocation).title(location);
+        mGoogleMap.addMarker(options);
+    }
+    private void goToNewPlace(LatLng newLocation) {
+        CameraPosition target = CameraPosition.builder().target(newLocation).zoom(14).bearing(0).tilt(45).build();
+        mGoogleMap.animateCamera(CameraUpdateFactory.newCameraPosition(target), 1000, null);
     }
 
     @Override

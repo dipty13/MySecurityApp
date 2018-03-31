@@ -21,7 +21,7 @@ public class SuccessfulTransaction extends AppCompatActivity {
     private TextView mAmount;
     private TextView mBalance;
     private Button mSeeLocation;
-    private String lat,lng;
+    private double lat,lng;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mGetUsersDataReference,mTransactionDataReference;
@@ -64,6 +64,7 @@ public class SuccessfulTransaction extends AppCompatActivity {
             }
         });
 
+        final Intent seeMap = new Intent(SuccessfulTransaction.this,SeeLocation.class);
         mTransactionDataReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -79,11 +80,14 @@ public class SuccessfulTransaction extends AppCompatActivity {
                     String sLongitude = dataSnapshot.child(String.valueOf(i)).child("longitude").getValue().toString();
 
 
-                    if(sDate.equals(time)&&sTime.equals(time))
+                    if(sDate.equals(date)&&sTime.equals(time))
                     {
                         mAmount.setText(sAmount);
-                        lat = sLatitude;
-                        lng  = sLongitude;
+                        lat = Double.parseDouble(sLatitude);
+                        lng  = Double.parseDouble(sLongitude);
+                        seeMap.putExtra("lat",lat);
+                        seeMap.putExtra("lng",lng);
+
                         break;
                     }
                 }
@@ -98,10 +102,8 @@ public class SuccessfulTransaction extends AppCompatActivity {
         mSeeLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SuccessfulTransaction.this,"button clicked",Toast.LENGTH_LONG).show();
-                Intent seeMap = new Intent(SuccessfulTransaction.this,SeeLocation.class);
-                seeMap.putExtra("lat",lat);
-                seeMap.putExtra("lng",lng);
+
+                Toast.makeText(SuccessfulTransaction.this,lat+ "button clicked" +lng,Toast.LENGTH_LONG).show();
                 startActivity(seeMap);
             }
         });

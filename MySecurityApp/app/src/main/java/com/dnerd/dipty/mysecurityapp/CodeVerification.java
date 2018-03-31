@@ -20,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CodeVerification extends AppCompatActivity {
     String mCode="00";
-    int mCounter = 0,mAmount=0;
+    int mCounter = 0,mAmount=0,mBalance=0;
     private EditText mEnterCode;
     private Button mVerify;
     private ProgressDialog mProgress;
@@ -53,6 +53,8 @@ public class CodeVerification extends AppCompatActivity {
         Intent intent = getIntent();
         mCode = intent.getStringExtra("code");
         mCounter = intent.getIntExtra("counter",1);
+        mBalance = intent.getIntExtra("balance",1);
+        mAmount = intent.getIntExtra("amount",1);
         //mAmount = intent.getIntExtra("amount",1);
 
 
@@ -76,6 +78,7 @@ public class CodeVerification extends AppCompatActivity {
                    // mProgress.dismiss();
                     Toast.makeText(CodeVerification.this, "verified", Toast.LENGTH_SHORT).show();
                    mTransactionDataReference.child(String.valueOf(mCounter-1)).child("transaction_status").setValue("done");
+                   mUserDataReference.child("user_balance").setValue(mBalance-mAmount);
 
                   /*  AlertDialog.Builder builder = new AlertDialog.Builder(CodeVerification.this);
                     builder.setMessage(R.string.success)

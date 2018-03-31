@@ -99,4 +99,9 @@
     <string name="header">Transaction Report</string>
     <string name="see_transaction_location">See Transaction Location</string>
     <string name="headerUnsucseesful">Unsucessful Transaction</string>
+    <string name="emailAddress">Email Address</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="toastFrogetPassword">Email canct be empty</string>
+    <string name="toastFrogetPasswordEmailSent">Password reset email has been sent!</string>
+    <string name="toastFrogetPasswordError">Error in sending password reset email!</string>
 </resources>

@@ -80,6 +80,13 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        mForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               startActivity(new Intent(Login.this,ForgetPassword.class));
+            }
+        });
+
         //If not registered and clicks create account
         mcreateId.setOnClickListener(new View.OnClickListener() {
             @Override
