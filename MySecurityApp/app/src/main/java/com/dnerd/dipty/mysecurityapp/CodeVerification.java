@@ -20,7 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CodeVerification extends AppCompatActivity {
     String mCode="00";
-    int mCounter = 0,mAmount=0,mBalance=0;
+    int mCounter = 0;
+    double mAmount=0,mBalance=0;
     private EditText mEnterCode;
     private Button mVerify;
     private ProgressDialog mProgress;
@@ -50,11 +51,16 @@ public class CodeVerification extends AppCompatActivity {
         mTransactionDataReference = FirebaseDatabase.getInstance().getReference().child("Transaction").child(onlineUserId);
         mUserDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(onlineUserId);
 
+        //mUserDataReference.removeEventListener((ValueEventListener) mUserDataReference);
+
         Intent intent = getIntent();
         mCode = intent.getStringExtra("code");
         mCounter = intent.getIntExtra("counter",1);
-        mBalance = intent.getIntExtra("balance",1);
-        mAmount = intent.getIntExtra("amount",1);
+       // mBalance = intent.getIntExtra("balance",1);
+        balance = intent.getStringExtra("balance");
+        mAmount = intent.getDoubleExtra("amount",1);
+
+        mBalance = Double.parseDouble(balance);
         //mAmount = intent.getIntExtra("amount",1);
 
 
@@ -90,6 +96,7 @@ public class CodeVerification extends AppCompatActivity {
                     mVerify.setVisibility(View.INVISIBLE);
                     mVerified.setVisibility(View.VISIBLE);
                     mBackToProfile.setVisibility(View.VISIBLE);
+
                 }else if(inputCodeCount<3){
                     Toast.makeText(CodeVerification.this, "invalid code!Please try again!you have "+(3-inputCodeCount)+" left!", Toast.LENGTH_SHORT).show();
                 }else{
@@ -173,6 +180,8 @@ public class CodeVerification extends AppCompatActivity {
 
 
                 Intent backToProfile = new Intent(CodeVerification.this,Profile.class);
+                backToProfile.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                backToProfile.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(backToProfile);
             }
         });

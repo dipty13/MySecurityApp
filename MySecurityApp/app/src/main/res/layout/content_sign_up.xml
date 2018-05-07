@@ -36,7 +36,8 @@
             android:hint="@string/name1"
             android:drawableLeft="@drawable/person_icon"
             android:textColor="@android:color/white"
-            android:textColorHint="@android:color/white"/>
+            android:textColorHint="@android:color/white"
+            />
         <EditText
             android:id="@+id/signupEditTextEmail"
             android:layout_width="match_parent"

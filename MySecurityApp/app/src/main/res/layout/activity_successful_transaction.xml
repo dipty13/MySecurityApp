@@ -4,78 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
     tools:context="com.dnerd.dipty.mysecurityapp.SuccessfulTransaction">
 
-    <TextView
+ <!--   <TextView
         android:id="@+id/successTvHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
-        android:textColor="@color/lightorange"
         android:text="@string/header"
         android:layout_centerHorizontal="true"
         android:textSize="35dp"
-        android:textStyle="italic"/>
-    <TextView
-        android:id="@+id/successTvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="85dp"
-        android:textColor="@color/lightorangedark"
-        android:text=""
-        android:layout_centerHorizontal="true"
-        android:textSize="30dp"
-        android:textStyle="italic"/>
+        android:textStyle="italic"/>-->
+        <!--android:textColor="@color/lightorange"-->
+   <LinearLayout
+       android:id="@+id/linearDetails1"
+       android:layout_width="190dp"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:layout_marginLeft="20dp"
+       android:layout_marginTop="10dp"
+       android:fontFamily="sans-serif-condensed"
+       android:textAppearance="?android:textAppearanceLarge">
 
-    <TextView
+       <TextView
         android:id="@+id/successTvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="120dp"
-        android:textColor="@color/lightorangedark"
+        android:layout_alignLeft="@+id/successTvDate"
+        android:layout_alignStart="@+id/successTvDate"
+        android:layout_below="@+id/successTvDate"
+        android:layout_marginTop="5dp"
         android:text=""
-        android:layout_centerHorizontal="true"
-        android:textSize="30dp"
-        android:textStyle="italic"/>
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
-    <TextView
+       <TextView
+           android:id="@+id/successTvDate"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_alignParentLeft="true"
+           android:layout_alignParentStart="true"
+           android:layout_alignParentTop="true"
+           android:layout_marginTop="5dp"
+           android:fontFamily="sans-serif-condensed"
+           android:text=""
+           android:textAppearance="?android:textAppearanceLarge"
+           android:textSize="15dp"
+           android:textStyle="italic" />
+
+       <TextView
         android:id="@+id/successTvAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="155dp"
-        android:textColor="@color/lightorangedark"
+        android:layout_alignLeft="@+id/successTvTime"
+        android:layout_alignStart="@+id/successTvTime"
+        android:layout_below="@+id/successTvTime"
+        android:layout_marginTop="5dp"
         android:text=""
-        android:layout_centerHorizontal="true"
-        android:textSize="30dp"
-        android:textStyle="italic"/>
+        android:textSize="25dp"
+        android:textStyle="italic"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
     <TextView
         android:id="@+id/successTvBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="195dp"
-        android:textColor="@color/lightorangedark"
+        android:layout_alignEnd="@+id/successTvAmount"
+        android:layout_alignRight="@+id/successTvAmount"
+        android:layout_below="@+id/successTvAmount"
+        android:layout_marginTop="5dp"
         android:text=""
-        android:layout_centerHorizontal="true"
-        android:textSize="30dp"
-        android:textStyle="italic"/>
+        android:textSize="25dp"
+        android:textStyle="italic"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
+   </LinearLayout>
 
-    <Button
-        android:id="@+id/successBtnLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="295dp"
-        android:background="@drawable/buttonstylee"
-        android:text="@string/see_transaction_location"
-        android:layout_centerHorizontal="true"
-        android:textSize="20dp"
-        android:textStyle="italic"/>
+    <ImageView
+        android:id="@+id/successLocation"
+        android:layout_width="130dp"
+        android:layout_height="150dp"
+        android:layout_alignLeft="@+id/successBtnLocation"
+        android:layout_alignStart="@+id/successBtnLocation"
+        android:layout_alignTop="@+id/linearDetails1"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:src="@drawable/location"
+        />
+
+   <Button
+       android:id="@+id/successBtnLocation"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_alignParentEnd="true"
+       android:layout_alignParentRight="true"
+       android:layout_below="@+id/successLocation"
+       android:layout_marginEnd="13dp"
+       android:layout_marginRight="13dp"
+       android:background="@drawable/location_button"
+       android:drawableRight="@drawable/arrow"
+       android:padding="12dp"
+       android:text="@string/see_transaction_location"
+       android:textSize="15dp"
+       android:textStyle="italic"
+       android:fontFamily="sans-serif-condensed"
+       android:textAppearance="?android:textAppearanceLarge"/>
 
 </RelativeLayout>

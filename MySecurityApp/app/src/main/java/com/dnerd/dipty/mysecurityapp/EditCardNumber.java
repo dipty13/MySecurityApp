@@ -18,6 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class EditCardNumber extends AppCompatActivity {
 
     private EditText mCardNumber,mCcv,mBalance;
@@ -48,11 +51,14 @@ public class EditCardNumber extends AppCompatActivity {
         mGetUsersDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(onlineUserId);
         mTransactionDataReference = FirebaseDatabase.getInstance().getReference().child("Transaction").child(onlineUserId);
 
+        mGetUsersDataReference.keepSynced(true);
+        mTransactionDataReference.keepSynced(true);
+
         mCardNumber.setVisibility(View.INVISIBLE);
         mCcv.setVisibility(View.INVISIBLE);
         mBalance.setVisibility(View.INVISIBLE);
         mSaveButton.setVisibility(View.INVISIBLE);
-        int balance1 =0;
+        final int balance1 =0;
        /* mTransactionDataReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -81,11 +87,11 @@ public class EditCardNumber extends AppCompatActivity {
                 //int intBalance = Integer.parseInt(balance);
 
                 if (!card.equals("card_number")) {
-                    mShowCardNumber.setText(card);
+                    //mShowCardNumber.setText(card);
                     mCardStatus.setText(cardStatus);
                 }
                 if (!balance.equals("balance")) {
-                   mShowBalance.setText(balance);
+                   mShowBalance.setText(getString(R.string.balance1)+balance+getString(R.string.tk));
                 }
 
             }
@@ -118,10 +124,60 @@ public class EditCardNumber extends AppCompatActivity {
                 String cardNumber  = mCardNumber.getText().toString();
                 String ccv = mCcv.getText().toString();
                 String balance = mBalance.getText().toString();
+                for(int i=0;i<balance.length();i++)
+                {
+                    if(balance.charAt(i)>='1'&&balance.charAt(i)>='9')
+                    {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(EditCardNumber.this);
+                        builder.setMessage(R.string.balance_char_error)
+                                .setTitle(R.string.invalidBalance_error_title)
+                                .setPositiveButton(android.R.string.ok,null);
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                        return;
+                    }
+                }
+                double testBalance = Double.parseDouble(balance);
 
+                if(testBalance<=0)
+                {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(EditCardNumber.this);
+                    builder.setMessage(R.string.balance_error)
+                            .setTitle(R.string.balance_error_title)
+                            .setPositiveButton(android.R.string.ok,null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    return;
+                }
                 if(cardNumber.length()==16&&ccv.length()==4) {
                     // mRegProgress.hide();
 
+                    for(int i=0;i<16;i++)
+                    {
+                        if(cardNumber.charAt(i)>='1'&&cardNumber.charAt(i)>='9')
+                        {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(EditCardNumber.this);
+                            builder.setMessage(R.string.cardNumber_error)
+                                    .setTitle(R.string.cardNumber_error_title)
+                                    .setPositiveButton(android.R.string.ok,null);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                            return;
+                        }
+                    }
+                    for(int i=0;i<4;i++)
+                    {
+                        if(ccv.charAt(i)>='1'&&ccv.charAt(i)>='9')
+                        {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(EditCardNumber.this);
+                            builder.setMessage(R.string.ccv_error)
+                                    .setTitle(R.string.cccv_error_title)
+                                    .setPositiveButton(android.R.string.ok,null);
+                            AlertDialog dialog = builder.create();
+                            dialog.show();
+                            return;
+                        }
+                    }
                     Toast.makeText(EditCardNumber.this, R.string.cardNUmberSaved, Toast.LENGTH_SHORT).show();
                     mCardNumber.setVisibility(View.INVISIBLE);
                     mCcv.setVisibility(View.INVISIBLE);
@@ -130,8 +186,10 @@ public class EditCardNumber extends AppCompatActivity {
 
                     /*Intent in = new Intent(CardNumber.this,CardNumber.class);
                     startActivity(in);*/
-                    mGetUsersDataReference.child("user_card").setValue(cardNumber);
-                    mGetUsersDataReference.child("user_ccv").setValue(ccv);
+                    hashCardNumber(cardNumber);
+                    hashCcvNumber(ccv);
+                    //mGetUsersDataReference.child("user_card").setValue(cardNumber);
+                   // mGetUsersDataReference.child("user_ccv").setValue(ccv);
                     mGetUsersDataReference.child("user_balance").setValue(balance);
                 }
                 else{
@@ -151,5 +209,52 @@ public class EditCardNumber extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void hashCcvNumber(String ccv) {
+        try{
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(ccv.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            StringBuffer MD5Hash = new StringBuffer();
+            for(int i=0;i<messageDigest.length;i++)
+            {
+                String x =Integer.toHexString(0xFF & messageDigest[i]);
+                while (x.length()<2)
+                {
+                    x ="0"+x;
+                }
+                MD5Hash.append(x);
+
+            }
+            mGetUsersDataReference.child("user_ccv").setValue(MD5Hash.toString());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void hashCardNumber(String cardNumber) {
+        //String cardHash="";//ccvHash="";
+        try{
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(cardNumber.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            StringBuffer MD5Hash = new StringBuffer();
+            for(int i=0;i<messageDigest.length;i++)
+            {
+                String x =Integer.toHexString(0xFF & messageDigest[i]);
+                while (x.length()<2)
+                {
+                    x ="0"+x;
+                }
+                MD5Hash.append(x);
+
+            }
+            mGetUsersDataReference.child("user_card").setValue(MD5Hash.toString());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
     }
 }

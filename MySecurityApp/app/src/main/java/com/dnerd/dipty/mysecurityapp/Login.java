@@ -152,8 +152,8 @@ public class Login extends AppCompatActivity {
 
         }
         else{
-            mRegProgress.setTitle("Login User");
-            mRegProgress.setMessage("Please wait while logging in your account!");
+            mRegProgress.setTitle(getString(R.string.loginProgTitle));
+            mRegProgress.setMessage(getString(R.string.progMsg));
             mRegProgress.setCanceledOnTouchOutside(false);
             mRegProgress.show();
 
@@ -179,6 +179,7 @@ public class Login extends AppCompatActivity {
                                         .setTitle(R.string.emailNotVerifiedTitle)
                                         .setPositiveButton(android.R.string.ok,null);
                                 AlertDialog dialog = builder.create();
+                                dialog.show();
                                 mAuth.signOut();
 
                             }

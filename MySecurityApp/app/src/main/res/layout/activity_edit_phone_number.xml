@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -10,11 +14,14 @@
         android:id="@+id/statusText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Signed In"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/phoneText"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
 
     <EditText
@@ -22,46 +29,58 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Phone number"
+        android:hint="@string/phoneNumber"
+        android:layout_marginTop="10dp"
         android:inputType="phone"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/sendButton"
-        app:layout_constraintTop_toBottomOf="@+id/statusText" />
+        app:layout_constraintTop_toBottomOf="@+id/statusText"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
     <Button
         android:id="@+id/sendButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="sendCode"
-        android:text="Send Code"
+        android:layout_marginTop="10dp"
+        android:text="@string/sendCode"
         app:layout_constraintBottom_toTopOf="@+id/resendButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneText" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneText"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
     <Button
         android:id="@+id/resendButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="resendCode"
-        android:text="Resend Code"
+        android:text="@string/resend_code"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/codeText"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendButton" />
+        app:layout_constraintTop_toBottomOf="@+id/sendButton"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
     <EditText
         android:id="@+id/codeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Code"
+        android:hint="@string/code"
+        android:layout_marginTop="10dp"
         android:inputType="number"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/verifyButton"
-        app:layout_constraintTop_toBottomOf="@+id/resendButton" />
+        app:layout_constraintTop_toBottomOf="@+id/resendButton"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
     <Button
         android:id="@+id/verifyButton"
@@ -69,10 +88,13 @@
         android:layout_height="wrap_content"
         android:onClick="verifyCode"
         android:text="Verify Code"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/signoutButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/codeText" />
+        app:layout_constraintTop_toBottomOf="@+id/codeText"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
     <Button
         android:id="@+id/signoutButton"
@@ -83,6 +105,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/verifyButton" />
+        app:layout_constraintTop_toBottomOf="@+id/verifyButton"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

@@ -36,6 +36,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -85,6 +87,7 @@ public class Profile extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         String onlineUserId = mAuth.getCurrentUser().getUid();
         mGetUsersDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(onlineUserId);
+        mGetUsersDataReference.keepSynced(true);
 
        /* mMapDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Saved_location").child(onlineUserId);
 
@@ -115,7 +118,7 @@ public class Profile extends AppCompatActivity {
                 String name = dataSnapshot.child("user_name").getValue().toString();
                 String email = dataSnapshot.child("user_email").getValue().toString();
                 String phone = dataSnapshot.child("user_phone").getValue().toString();
-                String image = dataSnapshot.child("user_image").getValue().toString();
+                final String image = dataSnapshot.child("user_image").getValue().toString();
                /* String thumb_image = dataSnapshot.child("user_thumb_image").toString();*/
 
                 mName.setText(name);
@@ -125,8 +128,18 @@ public class Profile extends AppCompatActivity {
                 //}
                 if(!image.equals("default_profile_image"))
                 {
-                    Picasso.with(Profile.this).load(image).placeholder(R.drawable.default_profile_image).into(mProfileImage);
+                    //Picasso.with(Profile.this).load(image).placeholder(R.drawable.default_profile_image).into(mProfileImage);
+                    Picasso.with(Profile.this).load(image).placeholder(R.drawable.default_profile_image).networkPolicy(NetworkPolicy.OFFLINE).into(mProfileImage, new Callback() {
+                        @Override
+                        public void onSuccess() {
 
+                        }
+
+                        @Override
+                        public void onError() {
+                            Picasso.with(Profile.this).load(image).placeholder(R.drawable.default_profile_image).into(mProfileImage);
+                        }
+                    });
                 }
 
 
@@ -188,6 +201,8 @@ public class Profile extends AppCompatActivity {
                 {
                     mAuth.signOut();
                     Intent intent = new Intent(Profile.this,MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                     Toast.makeText(Profile.this,"Log out",Toast.LENGTH_LONG).show();
                 }

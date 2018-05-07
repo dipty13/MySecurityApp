@@ -67,6 +67,7 @@ public class EditSafeLocation extends AppCompatActivity implements OnMapReadyCal
         mAuth = FirebaseAuth.getInstance();
        onlineUserId = mAuth.getCurrentUser().getUid();
         mMapDataBaseReference = FirebaseDatabase.getInstance().getReference().child("Saved_location").child(onlineUserId);
+        mMapDataBaseReference.keepSynced(true);
 
         mMapDataBaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -78,18 +79,22 @@ public class EditSafeLocation extends AppCompatActivity implements OnMapReadyCal
 
                 for(int i = 0; i< markerCounter;i++)
                 {
-                    String locationName = dataSnapshot.child(String.valueOf(i)).child("location_name").getValue().toString();
-                    String locationLatitude = dataSnapshot.child(String.valueOf(i)).child("location_latitude").getValue().toString();
-                    String locationLongitude = dataSnapshot.child(String.valueOf(i)).child("location_longitude").getValue().toString();
+                    try {
+                        String locationName = dataSnapshot.child(String.valueOf(i)).child("location_name").getValue().toString();
+                        String locationLatitude = dataSnapshot.child(String.valueOf(i)).child("location_latitude").getValue().toString();
+                        String locationLongitude = dataSnapshot.child(String.valueOf(i)).child("location_longitude").getValue().toString();
 
-                    if(!locationLatitude.equals("latitude")&&!locationLongitude.equals("longitude"))
-                    {
-                        double lat = Double.parseDouble(locationLatitude);
-                        double lng = Double.parseDouble(locationLongitude);
-                        LatLng loc = new LatLng(lat,lng);
-                        markLocation(loc,locationName);
+                        if (!locationLatitude.equals("23.902776") && !locationLongitude.equals("90.445488")) {
+                            double lat = Double.parseDouble(locationLatitude);
+                            double lng = Double.parseDouble(locationLongitude);
+                            LatLng loc = new LatLng(lat, lng);
+                            markLocation(loc, locationName);
                        /* mSafeLocation.put(Pair.create(locationLatitude,locationLatitude),onlineUserId);
                         TransactionRequest.setLocation(mSafeLocation);*/
+                        }
+                    }catch(Exception e)
+                    {
+
                     }
                 }
             }

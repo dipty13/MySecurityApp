@@ -43,6 +43,9 @@ public class SuccessfulTransaction extends AppCompatActivity {
         mGetUsersDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(onlineUserId);
         mTransactionDataReference = FirebaseDatabase.getInstance().getReference().child("Transaction").child(onlineUserId);
 
+        mGetUsersDataReference.keepSynced(true);
+        mTransactionDataReference.keepSynced(true);
+
         Intent intent = getIntent();
         time = intent.getStringExtra("time");
         date = intent.getStringExtra("date");
@@ -55,7 +58,7 @@ public class SuccessfulTransaction extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String balance = dataSnapshot.child("user_balance").getValue().toString();
 
-                mBalance.setText("Balance: "+balance);
+                mBalance.setText(getString(R.string.balance1)+balance+getString(R.string.tk));
             }
 
             @Override
@@ -82,7 +85,7 @@ public class SuccessfulTransaction extends AppCompatActivity {
 
                     if(sDate.equals(date)&&sTime.equals(time))
                     {
-                        mAmount.setText(sAmount);
+                        mAmount.setText(getString(R.string.amount)+sAmount+getString(R.string.tk));
                         lat = Double.parseDouble(sLatitude);
                         lng  = Double.parseDouble(sLongitude);
                         seeMap.putExtra("lat",lat);
@@ -103,7 +106,7 @@ public class SuccessfulTransaction extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(SuccessfulTransaction.this,lat+ "button clicked" +lng,Toast.LENGTH_LONG).show();
+                //Toast.makeText(SuccessfulTransaction.this,lat+ "button clicked" +lng,Toast.LENGTH_LONG).show();
                 startActivity(seeMap);
             }
         });

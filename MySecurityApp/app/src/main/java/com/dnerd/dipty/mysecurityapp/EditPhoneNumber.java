@@ -57,7 +57,9 @@ public class EditPhoneNumber extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         String onlineUserId = mAuth.getCurrentUser().getUid();
         mGetUsersDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(onlineUserId);
+        mGetUsersDataReference.keepSynced(true);
 
+        mSignoutButton.setVisibility(View.INVISIBLE);
         mVerifyButton.setEnabled(false);
         mResendButton.setEnabled(false);
         mSignoutButton.setEnabled(false);

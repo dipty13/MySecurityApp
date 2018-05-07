@@ -26,9 +26,9 @@ public class MapTable {
         String onlineUserId = mAuth.getCurrentUser().getUid();
         mMapDatabaseReference = FirebaseDatabase.getInstance().getReference().child("Saved_location").child(onlineUserId);
         mMapDatabaseReference.child("location_counter").setValue(1);
-        mMapDatabaseReference.child(String.valueOf(0)).child("location_name").setValue("locationName");
-        mMapDatabaseReference.child(String.valueOf(0)).child("location_latitude").setValue("latitude");
-        mMapDatabaseReference.child(String.valueOf(0)).child("location_longitude").setValue("longitude").addOnCompleteListener(new OnCompleteListener<Void>() {
+        mMapDatabaseReference.child(String.valueOf(0)).child("location_name").setValue("Dhaka");
+        mMapDatabaseReference.child(String.valueOf(0)).child("location_latitude").setValue("23.902776");
+        mMapDatabaseReference.child(String.valueOf(0)).child("location_longitude").setValue("90.445488").addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(!task.isSuccessful())

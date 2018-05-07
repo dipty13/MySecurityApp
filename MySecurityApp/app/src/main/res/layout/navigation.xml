@@ -10,17 +10,17 @@
         android:layout_height="wrap_content">
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="260dp"
             android:background="@drawable/profile_cover_pic"/>
 
-        <de.hdodenhof.circleimageview.CircleImageView
+       <!-- <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/navProfileImage"
             android:layout_width="170dp"
             android:layout_height="170dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
-            android:src="@drawable/default_profile_image" />
+            android:src="@drawable/default_profile_image" />-->
         <TextView
             android:id="@+id/navTextViewName"
             android:layout_width="wrap_content"

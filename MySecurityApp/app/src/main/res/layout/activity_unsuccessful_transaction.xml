@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
     tools:context="com.dnerd.dipty.mysecurityapp.UnsuccessfulTransaction">
 
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/unsuccessTvHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,64 +17,96 @@
         android:text="@string/headerUnsucseesful"
         android:layout_centerHorizontal="true"
         android:textSize="35dp"
-        android:textStyle="italic"/>
-    <TextView
-        android:id="@+id/unsuccessTvDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="115dp"
-        android:textColor="@color/lightorangedark"
-        android:text=""
-        android:layout_centerHorizontal="true"
-        android:textSize="30dp"
-        android:textStyle="italic"/>
+        android:textStyle="italic"/>-->
+ <LinearLayout
+     android:id="@+id/linearDetails"
+     android:layout_width="190dp"
+     android:layout_height="wrap_content"
+     android:orientation="vertical"
+     android:layout_marginLeft="20dp"
+     android:layout_marginTop="10dp">
 
-    <TextView
+     <TextView
         android:id="@+id/unsuccessTvTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="140dp"
-        android:textColor="@color/lightorangedark"
+        android:layout_alignLeft="@+id/unsuccessTvDate"
+        android:layout_alignStart="@+id/unsuccessTvDate"
+        android:layout_below="@+id/unsuccessTvDate"
+        android:layout_marginTop="16dp"
         android:text=""
-        android:layout_centerHorizontal="true"
-        android:textSize="30dp"
-        android:textStyle="italic"/>
+        android:textSize="20dp"
+        android:textStyle="italic"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
-    <TextView
+     <TextView
+         android:id="@+id/unsuccessTvDate"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/unsuccessBtnLocation"
+         android:layout_alignLeft="@+id/linearDetails"
+         android:layout_alignStart="@+id/linearDetails"
+         android:fontFamily="sans-serif-condensed"
+         android:text=""
+         android:textAppearance="?android:textAppearanceLarge"
+         android:textSize="15dp"
+         android:textStyle="italic" />
+
+     <TextView
         android:id="@+id/unsuccessTvAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="175dp"
-        android:textColor="@color/lightorangedark"
+        android:layout_alignLeft="@+id/unsuccessTvTime"
+        android:layout_alignStart="@+id/unsuccessTvTime"
+        android:layout_below="@+id/unsuccessTvTime"
+        android:layout_marginTop="5dp"
         android:text=""
-        android:layout_centerHorizontal="true"
-        android:textSize="30dp"
-        android:textStyle="italic"/>
+        android:textSize="25dp"
+        android:textStyle="italic"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
 
     <TextView
         android:id="@+id/unsuccessTvBalance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="205dp"
-        android:textColor="@color/lightorangedark"
+        android:layout_alignEnd="@+id/unsuccessTvAmount"
+        android:layout_alignRight="@+id/unsuccessTvAmount"
+        android:layout_below="@+id/unsuccessTvAmount"
+        android:layout_marginTop="5dp"
         android:text=""
-        android:layout_centerHorizontal="true"
-        android:textSize="30dp"
-        android:textStyle="italic"/>
+        android:textSize="25dp"
+        android:textStyle="italic"
+        android:fontFamily="sans-serif-condensed"
+        android:textAppearance="?android:textAppearanceLarge"/>
+ </LinearLayout>
+
+    <ImageView
+        android:id="@+id/unsuccessLocation"
+        android:layout_width="130dp"
+        android:layout_height="150dp"
+        android:layout_alignLeft="@+id/unsuccessBtnLocation"
+        android:layout_alignStart="@+id/unsuccessBtnLocation"
+        android:layout_alignTop="@+id/linearDetails"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:src="@drawable/location" />
 
     <Button
         android:id="@+id/unsuccessBtnLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="295dp"
-        android:background="@drawable/buttonstylee"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/linearDetails"
+        android:background="@drawable/location_button"
+        android:drawableRight="@drawable/arrow"
+        android:fontFamily="sans-serif-condensed"
+        android:padding="12dp"
         android:text="@string/see_transaction_location"
-        android:layout_centerHorizontal="true"
-        android:textSize="20dp"
-        android:textStyle="italic"/>
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textSize="15dp"
+        android:textStyle="italic" />
+
 </RelativeLayout>

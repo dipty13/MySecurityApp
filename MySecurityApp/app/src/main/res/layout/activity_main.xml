@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -21,7 +25,8 @@
             android:text="@string/app_name"
             android:textColor="@color/lightorange"
             android:textSize="60sp"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            />
         <TextView
             android:textColor="@color/lightorangedark"
             android:layout_width="250dp"
@@ -34,7 +39,7 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/linearlayout2"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/w1">
@@ -59,3 +64,4 @@
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>

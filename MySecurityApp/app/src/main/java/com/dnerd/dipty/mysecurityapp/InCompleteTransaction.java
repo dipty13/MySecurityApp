@@ -59,18 +59,22 @@ public class InCompleteTransaction extends AppCompatActivity {
 
                 for(int i=counter-1;i>=0;i--)
                 {
-                    String date = dataSnapshot.child(String.valueOf(i)).child("date").getValue().toString();
-                    String time = dataSnapshot.child(String.valueOf(i)).child("time").getValue().toString();
-                    String status = dataSnapshot.child(String.valueOf(i)).child("transaction_status").getValue().toString();
+                    try {
+                        String date = dataSnapshot.child(String.valueOf(i)).child("date").getValue().toString();
+                        String time = dataSnapshot.child(String.valueOf(i)).child("time").getValue().toString();
+                        String status = dataSnapshot.child(String.valueOf(i)).child("transaction_status").getValue().toString();
 
-                    if(!status.equals("done"))
+                        if (!status.equals("done")) {
+                            ListInCompleteItem listItem = new ListInCompleteItem(
+                                    time,
+                                    date
+                            );
+
+                            mListItems.add(listItem);
+                        }
+                    }catch (Exception e)
                     {
-                        ListInCompleteItem listItem = new ListInCompleteItem(
-                                time,
-                                date
-                        );
 
-                        mListItems.add(listItem);
                     }
                 }
 

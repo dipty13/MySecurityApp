@@ -45,6 +45,9 @@ public class UnsuccessfulTransaction extends AppCompatActivity {
         mGetUsersDataReference = FirebaseDatabase.getInstance().getReference().child("Users").child(onlineUserId);
         mTransactionDataReference = FirebaseDatabase.getInstance().getReference().child("Transaction").child(onlineUserId);
 
+        mGetUsersDataReference.keepSynced(true);
+        mTransactionDataReference.keepSynced(true);
+
         Intent intent = getIntent();
         time = intent.getStringExtra("time");
         date = intent.getStringExtra("date");
@@ -57,7 +60,7 @@ public class UnsuccessfulTransaction extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 String balance = dataSnapshot.child("user_balance").getValue().toString();
 
-                mBalance.setText("Balance: "+balance);
+                mBalance.setText(getString(R.string.balance1)+balance+getString(R.string.tk));
             }
 
             @Override
@@ -80,17 +83,19 @@ public class UnsuccessfulTransaction extends AppCompatActivity {
                     String sAmount = dataSnapshot.child(String.valueOf(i)).child("pay_amount").getValue().toString();
                     String sLatitude = dataSnapshot.child(String.valueOf(i)).child("latitude").getValue().toString();
                     String sLongitude = dataSnapshot.child(String.valueOf(i)).child("longitude").getValue().toString();
-
-
-                    if(sDate.equals(date)&&sTime.equals(time))
+                    try {
+                        if (sDate.equals(date) && sTime.equals(time)) {
+                            mAmount.setText(getString(R.string.amount) + sAmount + getString(R.string.tk));
+                            lat = Double.parseDouble(sLatitude);
+                            lng = Double.parseDouble(sLongitude);
+                            seeMap.putExtra("lat", lat);
+                            seeMap.putExtra("lng", lng);
+                            //Toast.makeText(UnsuccessfulTransaction.this,lat+ "button clicked" +lng,Toast.LENGTH_LONG).show();
+                            break;
+                        }
+                    }catch (Exception e)
                     {
-                        mAmount.setText(sAmount);
-                        lat = Double.parseDouble(sLatitude);
-                        lng  = Double.parseDouble(sLongitude);
-                        seeMap.putExtra("lat",lat);
-                        seeMap.putExtra("lng",lng);
-                        Toast.makeText(UnsuccessfulTransaction.this,lat+ "button clicked" +lng,Toast.LENGTH_LONG).show();
-                        break;
+                       // Toast.makeText(UnsuccessfulTransaction.this, R.string.details_error,Toast.LENGTH_LONG).show();
                     }
                 }
             }
@@ -106,7 +111,7 @@ public class UnsuccessfulTransaction extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Toast.makeText(UnsuccessfulTransaction.this,lat+ "button clicked" +lng,Toast.LENGTH_LONG).show();
+             // Toast.makeText(UnsuccessfulTransaction.this,lat+ "button clicked" +lng,Toast.LENGTH_LONG).show();
                 startActivity(seeMap);
             }
         });

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">InSecurity</string>
+    <string name="app_name" translatable="false">InSecurity</string>
     <string name="welcome_message">Secure your credit card now</string>
     <string name="login_button">Login</string>
     <string name="signup_button">Sign up</string>
@@ -13,23 +13,23 @@
     <string name="name">Name</string>
     <string name="name1">Name</string>
     <string name="sign_up_error_message">Make sure you entered name,email  address and password!</string>
-    <string name="sign_up_error_title">Opps!</string>
+    <string name="sign_up_error_title" translatable="false">Opps!</string>
     <string name="sign_up_error_message_email">You can\'t leave email field empty!</string>
     <string name="sign_up_error_message_name">You can\'t leave name field empty!</string>
     <string name="sign_up_error_message_password">You can\'t leave password field empty!</string>
     <string name="validEmailError">Please enter a valid email address!</string>
     <string name="validPasswordError">Password can\'t be less than 6 characters!</string>
-    <string name="firebase_signup_error">Sing up wasn\'t successful!</string>
+    <string name="firebase_signup_error">Sign up wasn\'t successful!</string>
     <string name="firebase_signup_alreadyReagistered">You are already registered!</string>
     <string name="title_activity_profile">Profile</string>
     <string name="login_error_message">Make sure you entered name,email  address and password!</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_settings">Settings</string>
-    <string name="profile_names">Induce Smile</string>
-    <string name="induce_smile">Induce Smile</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="profile_names" translatable="false">Induce Smile</string>
+    <string name="induce_smile" translatable="false">Induce Smile</string>
 
-    <string name="login_error_title">Opps!</string>
+    <string name="login_error_title" translatable="false">Opps!</string>
     <string name="login_error_message_password">Put a valid password!</string>
     <string name="firebase_login_error">Login wasn\'t successful!</string>
     <string name="change_image">Change Image</string>
@@ -37,40 +37,41 @@
     <string name="phone_number">Mobile Number</string>
     <string name="cardNumber">Card Number</string>
     <string name="savedLoccation">Safe Location</string>
+    <string name="savedLocation">Safe Location</string>
     <string name="logout">Log Out</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
-    <string name="profile_name">Profile name</string>
-    <string name="country_location">Location</string>
-    <string name="title_activity_profile_fragment">ProfileFragment</string>
+    <string name="open" translatable="false">Open</string>
+    <string name="close" translatable="false">Close</string>
+    <string name="profile_name" translatable="false">Profile name</string>
+    <string name="country_location" translatable="false">Location</string>
+    <string name="title_activity_profile_fragment" translatable="false">ProfileFragment</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="save_edit">Save</string>
-    <string name="edit_profile_name">Edit Name</string>
-    <string name="select_date">Select date</string>
-    <string name="edit_profile_country">Edit Country</string>
-    <string name="edit_profile_phone">Edit Phone Number</string>
-    <string name="edit_profile_hobby">Edit Hobby</string>
+    <string name="edit_profile_name" translatable="false">Edit Name</string>
+    <string name="select_date" translatable="false">Select date</string>
+    <string name="edit_profile_country" translatable="false">Edit Country</string>
+    <string name="edit_profile_phone" translatable="false">Edit Phone Number</string>
+    <string name="edit_profile_hobby" translatable="false">Edit Hobby</string>
     <string name="nomap">Google map is not supported</string>
-    <string name="go">Go</string>
-    <string name="whichPalce">Which place?</string>
+    <string name="go" translatable="false">Go</string>
+    <string name="whichPalce" translatable="false">Which place?</string>
     <string name="map_type_none">None</string>
     <string name="map_type_normal">Normal</string>
     <string name="map_type_terrain">Terrain</string>
-    <string name="map_type_satelite">Satelite</string>
+    <string name="map_type_satelite">Satellite</string>
     <string name="map_type_hybrid">Hybrid</string>
-    <string name="cardText">XXXX XXXX XXXX XXXX</string>
-    <string name="cardccv">CCV</string>
+    <string name="cardText" translatable="false">XXXX XXXX XXXX XXXX</string>
+    <string name="cardccv" translatable="false">CCV</string>
     <string name="cardNUmberSaved">Card Number Saved</string>
     <string name="savingInfo">Saving Info</string>
     <string name="validCard">Please Enter valid card numbr or CCV number!</string>
     <string name="invalidCard">Invalid Info</string>
     <string name="transaction">Transaction Request</string>
     <string name="total">Amount</string>
-    <string name="ccv">CCV</string>
-    <string name="pay">Pay</string>
-    <string name="addLocation">Add Location</string>
+    <string name="ccv" translatable="false">CCV</string>
+    <string name="pay" translatable="false">Pay</string>
+    <string name="addLocation" translatable="false">Add Location</string>
     <string name="report">Transaction History</string>
     <string name="emailSendFailed">Couldn\'t send verification email!</string>
     <string name="emailSent">Verification Email has been sent.Please verify your account!</string>
@@ -78,13 +79,13 @@
     <string name="emailNotVerifiedTitle">Email Not Verified!</string>
     <string name="emailNotverfied">Email is not verified. Check your inbox!</string>
     <string name="mapNotReady">Map is not ready</string>
-    <string name="currentLocationInvalid">Invalid location</string>
+    <string name="currentLocationInvalid" translatable="false">Invalid location</string>
     <string name="enterCode">Enter Code</string>
     <string name="verify_button">Verify</string>
     <string name="vreifyPurchase">Verify Card</string>
     <string name="verfyProgress">Verfing Code</string>
     <string name="verfymessage">Please wait while we verify your card!</string>
-    <string name="success">Verfied</string>
+    <string name="success">Verified</string>
     <string name="sucessDetails">Valid code! Purchase is done!</string>
     <string name="cardVerifed">Card is verified and Transaction is done!</string>
     <string name="backButton">Go Back to Profile</string>
@@ -97,11 +98,46 @@
     <string name="balance">Account Balance</string>
     <string name="cardBalanceNotEnough">Your account balance is not enough!</string>
     <string name="header">Transaction Report</string>
-    <string name="see_transaction_location">See Transaction Location</string>
-    <string name="headerUnsucseesful">Unsucessful Transaction</string>
+    <string name="see_transaction_location">See Location</string>
+    <string name="headerUnsucseesful">Unsuccessful Transaction</string>
     <string name="emailAddress">Email Address</string>
     <string name="reset_password">Reset Password</string>
-    <string name="toastFrogetPassword">Email canct be empty</string>
+    <string name="toastFrogetPassword">Email can\'t be empty</string>
     <string name="toastFrogetPasswordEmailSent">Password reset email has been sent!</string>
     <string name="toastFrogetPasswordError">Error in sending password reset email!</string>
+    <string name="transaction_error">Amount can\'t be less than 50</string>
+    <string name="transaction_error_title">Transaction Amount Error</string>
+    <string name="balance_error">Balance Can\'t be less than or equal to zero</string>
+    <string name="balance_error_title">Balance Error</string>
+    <string name="cardNumber_error">Card number doesn\'t consist of these characters! Please give a valid card number!</string>
+    <string name="cardNumber_error_title">Invalid Card Number</string>
+    <string name="ccv_error">CCV number doesn\'t consist of these characters! Please give a valid CCV number!</string>
+    <string name="cccv_error_title"> Invalid CCV</string>
+    <string name="balance_char_error">Please give a valid balance!</string>
+    <string name="invalidBalance_error_title">Invalid Balance</string>
+    <string name="title_activity_succeccful">Details</string>
+    <string name="title_activity_unsuccessful">Details</string>
+    <string name="makeTransaction" translatable="false">Make Transaction</string>
+    <string name="cardInfo">Card Info</string>
+    <string name="phone">Phone Number</string>
+    <string name="transactionHistory">Transaction History</string>
+    <string name="successReport">Successful Transactions</string>
+    <string name="unsuccessReport">Unsuccessful Transactions</string>
+    <string name="time1">Time:</string>
+    <string name="date1">Date:</string>
+    <string name="balance1">"Balance: "</string>
+    <string name="seeLocation">Transaction Location</string>
+    <string name="tk">" TK"</string>
+    <string name="amount">"Amount: "</string>
+    <string name="phoneNumber">Phone number</string>
+    <string name="sendCode">Send Code</string>
+    <string name="resend_code">Resend Code</string>
+    <string name="code">Code</string>
+    <string name="loginProgTitle" translatable="false">Login User</string>
+    <string name="progMsg">Please wait while logging in your account!</string>
+    <string name="code_verfication">Code Verification</string>
+    <string name="transaction_error_character">Amount Can\'t be Alphabet</string>
+    <string name="transaction_error_invalid">Please provide valid transaction information!</string>
+    <string name="transaction_info_error_title">Transaction Error</string>
+    <string name="details_error">Can\'t show details</string>
 </resources>

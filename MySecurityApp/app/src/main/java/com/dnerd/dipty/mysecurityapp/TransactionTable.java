@@ -26,13 +26,13 @@ public class TransactionTable {
         String onlineUserId = mAuth.getCurrentUser().getUid();
         mTransactionDataReference = FirebaseDatabase.getInstance().getReference().child("Transaction").child(onlineUserId);
 
-        mTransactionDataReference.child("transaction_counter").setValue(1);
+        mTransactionDataReference.child("transaction_counter").setValue(0);
   /*      mTransactionDataReference.child(String.valueOf(0)).child("email").setValue("email");*/
         mTransactionDataReference.child(String.valueOf(0)).child("date").setValue("date");
         mTransactionDataReference.child(String.valueOf(0)).child("time").setValue("time");
-        mTransactionDataReference.child(String.valueOf(0)).child("latitude").setValue("latitude");
-        mTransactionDataReference.child(String.valueOf(0)).child("longitude").setValue("longitude");
-        mTransactionDataReference.child(String.valueOf(0)).child("pay_amount").setValue("amount");
+        mTransactionDataReference.child(String.valueOf(0)).child("latitude").setValue("23.902776");
+        mTransactionDataReference.child(String.valueOf(0)).child("longitude").setValue("90.445488");
+        mTransactionDataReference.child(String.valueOf(0)).child("pay_amount").setValue("0");
      /*   mTransactionDataReference.child(String.valueOf(0)).child("card_number").setValue("cardNumber");
         mTransactionDataReference.child(String.valueOf(0)).child("card_ccv").setValue("ccv");*/
         mTransactionDataReference.child(String.valueOf(0)).child("transaction_status").setValue("not done").addOnCompleteListener(new OnCompleteListener<Void>() {

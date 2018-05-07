@@ -32,7 +32,7 @@ public class Navigation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navigation);
 
-        mNavProfileImage = findViewById(R.id.navProfileImage);
+        //mNavProfileImage = findViewById(R.id.navProfileImage);
         mNavName = findViewById(R.id.navTextViewName);
         mNavEmail = findViewById(R.id.navTextViewEmail);
 
@@ -53,11 +53,11 @@ public class Navigation extends AppCompatActivity {
                 mNavEmail.setText(email);
 
 
-                if(!image.equals("default_profile_image"))
+               /* if(!image.equals("default_profile_image"))
                 {
                     Picasso.with(Navigation.this).load(image).placeholder(R.drawable.default_profile_image).into(mNavProfileImage);
 
-                }
+                }*/
 
 
 

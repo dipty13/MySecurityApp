@@ -27,7 +27,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name=".MySecurityApp">
         <activity
             android:name=".MainActivity"
             android:theme="@style/SplashTheme">
@@ -48,8 +49,11 @@
         <activity
             android:name=".Profile"
             android:label="@string/title_activity_profile"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EditSafeLocation" />
+            android:theme="@style/ProfileTheme" />
+        <activity android:name=".EditSafeLocation"
+            android:label="@string/savedLocation"
+            android:theme="@style/AllTheme"
+            android:parentActivityName=".Profile"/>
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -58,17 +62,49 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".TransactionRequest" />
-        <activity android:name=".EditCardNumber" />
-        <activity android:name=".EditPhoneNumber" />
-        <activity android:name=".CodeVerification" />
-        <activity android:name=".TransactionReport" />
-        <activity android:name=".CompleteTransactionReport" />
-        <activity android:name=".InCompleteTransaction" />
-        <activity android:name=".SuccessfulTransaction" />
-        <activity android:name=".UnsuccessfulTransaction" />
-        <activity android:name=".SeeLocation" />
-        <activity android:name=".ForgetPassword"></activity>
+        <activity android:name=".TransactionRequest"
+            android:label="@string/transaction"
+            android:theme="@style/AllTheme"
+            android:parentActivityName=".Profile"/>
+        <activity android:name=".EditCardNumber"
+            android:label="@string/cardInfo"
+            android:theme="@style/AllTheme"
+            android:parentActivityName=".Profile"/>
+        <activity android:name=".EditPhoneNumber"
+            android:label="@string/phone"
+            android:theme="@style/AllTheme"
+            android:parentActivityName=".Profile"/>
+        <activity android:name=".CodeVerification"
+            android:label="@string/code_verfication"
+            android:theme="@style/AllTheme"/>
+        <activity android:name=".TransactionReport"
+            android:label="@string/transactionHistory"
+            android:theme="@style/AllTheme"
+            android:parentActivityName=".Profile"/>
+        <activity android:name=".CompleteTransactionReport"
+            android:label="@string/successReport"
+            android:theme="@style/AllTheme"
+            android:parentActivityName=".TransactionReport"/>
+        <activity android:name=".InCompleteTransaction"
+            android:label="@string/unsuccessReport"
+            android:theme="@style/AllTheme"
+            android:parentActivityName=".TransactionReport"/>
+        <activity android:name=".SuccessfulTransaction"
+            android:label="@string/title_activity_succeccful"
+            android:theme="@style/AllTheme"
+            android:parentActivityName=".CompleteTransactionReport"/>
+        <activity android:name=".UnsuccessfulTransaction"
+            android:label="@string/title_activity_unsuccessful"
+            android:theme="@style/AllTheme"
+            android:parentActivityName=".InCompleteTransaction"/>
+        <activity android:name=".SeeLocation"
+            android:label="@string/seeLocation"
+            android:theme="@style/AllTheme"
+            android:parentActivityName=".TransactionReport"/>
+        <activity android:name=".ForgetPassword"
+            android:label="@string/reset_password"
+            android:theme="@style/AllTheme"
+            android:parentActivityName=".Login"></activity>
     </application>
 
 </manifest>

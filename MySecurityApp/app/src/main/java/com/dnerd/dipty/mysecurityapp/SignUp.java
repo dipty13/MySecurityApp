@@ -200,12 +200,13 @@ public class SignUp extends AppCompatActivity {
                                     MapTable mp = new MapTable();
                                     TransactionTable tt = new TransactionTable();
                                     sendVerificationEmail();
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
+                                    /*AlertDialog.Builder builder = new AlertDialog.Builder(SignUp.this);
                                     builder.setMessage(R.string.emailSent)
                                             .setTitle(R.string.emailSentTitle)
                                             .setPositiveButton(android.R.string.ok,null);
                                     AlertDialog dialog = builder.create();
-                                    dialog.show();
+                                    dialog.show();*/
+                                    Toast.makeText(SignUp.this,R.string.emailSent,Toast.LENGTH_LONG).show();
                                     mAuth.signOut();
                                     Intent intent = new Intent(SignUp.this,Login.class);
                                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
